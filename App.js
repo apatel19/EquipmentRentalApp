@@ -4,7 +4,7 @@ import {View, Text, StyleSheet} from 'react-native';
 const App = () => {
   return (
     <View style={styles.screen}>
-      <Text>Equipment Rental</Text>
+      <Text>Equipment Rental - CS495 Semester Project</Text>
     </View>
   );
 };
