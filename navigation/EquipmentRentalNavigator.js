@@ -7,6 +7,7 @@ import Colors from '../constants/Colors';
 
 import SearchScreenContainer from '../screens/SearchScreenContainer';
 import FavoriteScreenContainer from '../screens/FavoriteScreenContainer';
+import AccountScreenContainer from '../screens/AccountScreenContainer';
 
 const defaultStackOption = {
   headerStyle: {
@@ -23,6 +24,10 @@ const SearchStackNavigator = createStackNavigator({
 
 const FavoriteStackNavigator = createStackNavigator({
   Favorite: FavoriteScreenContainer,
+});
+
+const AccountStackNavigator = createStackNavigator({
+  Account: AccountScreenContainer,
 });
 
 const EquipmentRentalNavigator = createBottomTabNavigator({
@@ -47,6 +52,19 @@ const EquipmentRentalNavigator = createBottomTabNavigator({
           <Icon name="md-heart" size={25} color={tabInfo.tintColor} />
         ) : (
           <Icon name="ios-heart" size={25} color={tabInfo.tintColor} />
+        );
+      },
+      tabBarColor: Colors.primaryColor,
+    },
+  },
+  Account: {
+    screen: AccountStackNavigator,
+    navigationOptions: {
+      tabBarIcon: tabInfo => {
+        return Platform.OS === 'android' ? (
+          <Icon name="md-settings" size={25} color={tabInfo.tintColor} />
+        ) : (
+          <Icon name="ios-settings" size={25} color={tabInfo.tintColor} />
         );
       },
       tabBarColor: Colors.primaryColor,
