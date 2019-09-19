@@ -1,20 +1,9 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+
+import EquipmentRentalNavigator from './navigation/EquipmentRentalNavigator';
 
 const App = () => {
-  return (
-    <View style={styles.screen}>
-      <Text>Equipment Rental - CS495 Semester Project</Text>
-    </View>
-  );
+  return <EquipmentRentalNavigator />;
 };
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default App;
