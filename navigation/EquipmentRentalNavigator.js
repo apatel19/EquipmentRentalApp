@@ -7,6 +7,7 @@ import Colors from '../constants/Colors';
 
 import SearchScreenContainer from '../screens/SearchScreenContainer';
 import FavoriteScreenContainer from '../screens/FavoriteScreenContainer';
+import OrdersHistoryScreenContainer from '../screens/OrdersHistoryScreenContainer';
 
 const defaultStackOption = {
   headerStyle: {
@@ -19,6 +20,9 @@ const SearchStackNavigator = createStackNavigator({
   Search: {
     screen: SearchScreenContainer,
   },
+}); 
+const OrdersStackNavigator = createStackNavigator({
+  Orders: OrdersHistoryScreenContainer,
 });
 
 const FavoriteStackNavigator = createStackNavigator({
@@ -52,6 +56,18 @@ const EquipmentRentalNavigator = createBottomTabNavigator({
       tabBarColor: Colors.primaryColor,
     },
   },
+  Orders: {
+    screen: OrdersStackNavigator,
+    navigationOptions: {
+      tabBarIcon: tabInfo => {
+        return Platform.OS === 'android' ? (
+          <Icon name="md-reorder" size={25} color={tabInfo.tintColor} />
+        ) : (
+          <Icon name="ios-reorder" size={25} color={tabInfo.tintColor} />
+        );
+      },
+  },
+},
 });
 
 export default createAppContainer(EquipmentRentalNavigator);
