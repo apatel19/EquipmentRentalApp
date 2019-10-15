@@ -31,6 +31,19 @@ const AccountStackNavigator = createStackNavigator({
 });
 
 const EquipmentRentalNavigator = createBottomTabNavigator({
+  Account: {
+    screen: AccountStackNavigator,
+    navigationOptions: {
+      tabBarIcon: tabInfo => {
+        return Platform.OS === 'android' ? (
+          <Icon name="md-settings" size={25} color={tabInfo.tintColor} />
+        ) : (
+          <Icon name="ios-settings" size={25} color={tabInfo.tintColor} />
+        );
+      },
+      tabBarColor: Colors.primaryColor,
+    },
+  },
   Search: {
     screen: SearchStackNavigator,
     navigationOptions: {
@@ -52,19 +65,6 @@ const EquipmentRentalNavigator = createBottomTabNavigator({
           <Icon name="md-heart" size={25} color={tabInfo.tintColor} />
         ) : (
           <Icon name="ios-heart" size={25} color={tabInfo.tintColor} />
-        );
-      },
-      tabBarColor: Colors.primaryColor,
-    },
-  },
-  Account: {
-    screen: AccountStackNavigator,
-    navigationOptions: {
-      tabBarIcon: tabInfo => {
-        return Platform.OS === 'android' ? (
-          <Icon name="md-settings" size={25} color={tabInfo.tintColor} />
-        ) : (
-          <Icon name="ios-settings" size={25} color={tabInfo.tintColor} />
         );
       },
       tabBarColor: Colors.primaryColor,
