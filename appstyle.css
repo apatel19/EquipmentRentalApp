@@ -1,0 +1,31 @@
+body {
+    color: #313c47;
+    background-color: #429bf5; 
+    
+}
+
+
+nav li{display:inline;
+padding: 5px;
+}
+nav a{
+    list-style-type: none;
+    margin: 0;
+    padding: 10;
+    width: 100px;
+    background-color: #f1f1f1;
+    font-family: cursive, Comic Sans MS; 
+
+}
+.one{
+    display: block;
+    color: #000000;
+    padding: 8px 16px;
+}
+.one:hover{
+    color: #91909e;
+}
+.one:hover:not(.active){
+    background-color:#726ce6;
+    color: #f5f5f7;
+}

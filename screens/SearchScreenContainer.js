@@ -1,11 +1,35 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {FlatList, Button} from 'react-native';
+import {SEARCH_DATA} from '../data/dummy-data';
+import ProductItem from '../components/UI/ProductItem';
+import Colors from '../constants/Colors';
 
 const SearchScreenContainer = props => {
   return (
-    <View style={styles.screen}>
-      <Text>This is search screen!</Text>
-    </View>
+    <FlatList
+      data={SEARCH_DATA}
+      keyExtractor={item => item.id}
+      renderItem={itemData => (
+        <ProductItem
+          onViewDetail={() => {}}
+          onAddToCart={() => {}}
+          title={itemData.item.title}
+          price={itemData.item.price}
+          image={itemData.item.imageUrl}
+          onSelect={() => {}}>
+          <Button
+            color={Colors.primary}
+            title="More Info."
+            onPress={() => {}}
+          />
+          <Button
+            color={Colors.primary}
+            title="Add to Cart"
+            onPress={() => {}}
+          />
+        </ProductItem>
+      )}
+    />
   );
 };
 
@@ -14,13 +38,5 @@ SearchScreenContainer.navigationOptions = navData => {
     headerTitle: 'Search',
   };
 };
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default SearchScreenContainer;
