@@ -11,10 +11,22 @@ const HomeScreen = props => {
   };
 
   return (
-    <View style={styles.screen}>
-      <Text>This is Landing Page</Text>
-      <Button title="Login" onPress={goTologin} />
-      <Button title="Register" onPress={goToRegistration} />
+    <View>
+      <View style={styles.logoContainer}>
+        <Text style={styles.appName}>Equipment Rental</Text>
+        <Text style={styles.subText}>making renting equipments easy.</Text>
+      </View>
+      <View style={styles.buttonsContainer}>
+        <View style={styles.button}>
+          <Button style={styles.login} title="Login" onPress={goTologin} />
+        </View>
+        <View style={styles.button}>
+          <Button title="Register" onPress={goToRegistration} />
+        </View>
+        <View>
+          <Button title="by registering i accept the ToU." />
+        </View>
+      </View>
     </View>
   );
 };
@@ -24,10 +36,38 @@ HomeScreen.navigationOptions = {
 };
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
+  logoContainer: {
+    height: '70%',
+    width: '100%',
+    borderColor: 'black',
+    borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  appName: {
+    fontSize: 45,
+    fontWeight: 'bold',
+    color: 'green',
+  },
+  subText: {
+    fontSize: 20,
+    fontWeight: 'normal',
+    color: 'gray',
+  },
+  buttonsContainer: {
+    height: '30%',
+    width: '100%',
+    borderColor: 'red',
+    borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    height: '16%',
+    width: '45%',
+    borderWidth: 1,
+    borderColor: 'black',
+    margin: 10,
   },
 });
 
