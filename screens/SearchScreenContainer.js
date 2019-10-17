@@ -1,5 +1,9 @@
 import React from 'react';
 import {FlatList, Button} from 'react-native';
+
+import {HeaderButtons, Item} from 'react-navigation-header-buttons';
+import {HeaderButton} from 'react-navigation-header-buttons';
+
 import {SEARCH_DATA} from '../data/dummy-data';
 import ProductItem from '../components/UI/ProductItem';
 import Colors from '../constants/Colors';
@@ -36,6 +40,11 @@ const SearchScreenContainer = props => {
 SearchScreenContainer.navigationOptions = navData => {
   return {
     headerTitle: 'Search',
+    headerRight: (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item title="Cart" onPress={() => {}} />
+      </HeaderButtons>
+    ),
   };
 };
 

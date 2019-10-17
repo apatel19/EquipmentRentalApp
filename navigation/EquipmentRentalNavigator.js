@@ -1,9 +1,17 @@
 import React from 'react';
-import {createAppContainer, createStackNavigator} from 'react-navigation';
+import {
+  createAppContainer,
+  createStackNavigator,
+  createSwitchNavigator,
+} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {Platform} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Colors from '../constants/Colors';
+
+import LoginScreen from '../screens/Auth/LoginScreen';
+import RegistrationScreen from '../screens/Auth/RegistrationScreen';
+import HomeScreen from '../screens/Auth/HomeScreen';
 
 import SearchScreenContainer from '../screens/SearchScreenContainer';
 import FavoriteScreenContainer from '../screens/FavoriteScreenContainer';
@@ -17,11 +25,17 @@ const defaultStackOption = {
   headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
 };
 
+const AuthNavigator = createStackNavigator({
+  Home: HomeScreen,
+  Login: LoginScreen,
+  Registration: RegistrationScreen,
+});
+
 const SearchStackNavigator = createStackNavigator({
   Search: {
     screen: SearchScreenContainer,
   },
-}); 
+});
 const OrdersStackNavigator = createStackNavigator({
   Orders: OrdersHistoryScreenContainer,
 });
@@ -84,8 +98,18 @@ const EquipmentRentalNavigator = createBottomTabNavigator({
           <Icon name="ios-reorder" size={25} color={tabInfo.tintColor} />
         );
       },
+    },
   },
-},
 });
 
-export default createAppContainer(EquipmentRentalNavigator);
+const mainNavigator = createSwitchNavigator(
+  {
+    Auth: AuthNavigator,
+    Main: EquipmentRentalNavigator,
+  },
+  {
+    initialRouteName: 'Auth',
+  },
+);
+
+export default createAppContainer(mainNavigator);
