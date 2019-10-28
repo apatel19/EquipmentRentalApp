@@ -2,8 +2,14 @@ import React from 'react';
 import {View, Text, StyleSheet, Button, Alert} from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import Colors from '../constants/Colors.js'
+import DummyScreenContainer from '../screens/dummyScreen'
 
 const AccountScreenContainer = props => {
+  const goToNextScreen = (Title) => {
+    props.navigation.setParams({title: Title});
+    props.navigation.navigate('Support');
+  };
+
   return (
     <SafeAreaView style={styles.screen}>
       <View>
@@ -12,7 +18,7 @@ const AccountScreenContainer = props => {
         <View style={styles.row}>
           <Button
               title="change password"
-              onPress={() => Alert.alert('nice work')}
+              onPress={() => goToNextScreen('Change Password')}
             />
           <Button
             title="preferences"
@@ -38,7 +44,7 @@ const AccountScreenContainer = props => {
             />
           <Button
             title="Contact support"
-            onPress={() => Alert.alert('nice work')}
+            onPress={() => goToNextScreen('Support')}
           />
         </View>
         <View style={styles.bottom}>
@@ -52,6 +58,17 @@ const AccountScreenContainer = props => {
     </SafeAreaView>
   );
 };
+
+const IconButton = ({title, color, bgcolor, onPress, width, icon }) =>{
+  return (
+    <TouchableHighlight onPress = { onPress } style= { { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: bgcolor } }>
+    <View style={ {width: width, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' } }>
+      <Image style = { { height: 27, width:27, margin : 5 } } source = {  icon }></Image>
+      <Text style = { {color: color }} > { title } </Text>      
+    </View>
+    </TouchableHighlight>
+  );
+}
 
 AccountScreenContainer.navigationOptions = navData => {
   return {

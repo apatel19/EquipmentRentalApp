@@ -18,6 +18,9 @@ import FavoriteScreenContainer from '../screens/FavoriteScreenContainer';
 import AccountScreenContainer from '../screens/AccountScreenContainer';
 import OrdersHistoryScreenContainer from '../screens/OrdersHistoryScreenContainer';
 
+import DummyScreenContainer from '../screens/dummyScreen';
+import SupportScreenContainer from '../screens/AccountScreens/SupportScreen'
+
 const defaultStackOption = {
   headerStyle: {
     backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : '',
@@ -30,6 +33,7 @@ const AuthNavigator = createStackNavigator({
   Login: LoginScreen,
   Registration: RegistrationScreen,
 });
+
 
 const SearchStackNavigator = createStackNavigator({
   Search: {
@@ -46,6 +50,8 @@ const FavoriteStackNavigator = createStackNavigator({
 
 const AccountStackNavigator = createStackNavigator({
   Account: AccountScreenContainer,
+  Support: SupportScreenContainer,
+  Dummy: DummyScreenContainer,
 });
 
 const EquipmentRentalNavigator = createBottomTabNavigator({
