@@ -7,7 +7,7 @@ import DummyScreenContainer from '../screens/dummyScreen'
 const AccountScreenContainer = props => {
   const goToNextScreen = (Title) => {
     props.navigation.setParams({title: Title});
-    props.navigation.navigate('Support');
+    props.navigation.navigate(Title);
   };
 
   return (
@@ -18,7 +18,7 @@ const AccountScreenContainer = props => {
         <View style={styles.row}>
           <Button
               title="change password"
-              onPress={() => goToNextScreen('Change Password')}
+              onPress={() => goToNextScreen('ChangePassword')}
             />
           <Button
             title="preferences"

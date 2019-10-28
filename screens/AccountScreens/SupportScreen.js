@@ -27,6 +27,12 @@ SupportScreenContainer.navigateOptions = {
     Title: 'Support',
 };
 
+SupportScreenContainer.navigationOptions = navData => {
+  return {
+    headerTitle: 'Contact support',
+  };
+};
+
 const styles = StyleSheet.create({
     formContainer: {
         height: '50%',

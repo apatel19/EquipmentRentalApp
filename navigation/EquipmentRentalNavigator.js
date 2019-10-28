@@ -20,6 +20,7 @@ import OrdersHistoryScreenContainer from '../screens/OrdersHistoryScreenContaine
 
 import DummyScreenContainer from '../screens/dummyScreen';
 import SupportScreenContainer from '../screens/AccountScreens/SupportScreen'
+import ChangePasswordContainer from '../screens/AccountScreens/ChangePW';
 
 const defaultStackOption = {
   headerStyle: {
@@ -51,6 +52,7 @@ const FavoriteStackNavigator = createStackNavigator({
 const AccountStackNavigator = createStackNavigator({
   Account: AccountScreenContainer,
   Support: SupportScreenContainer,
+  ChangePassword: ChangePasswordContainer,
   Dummy: DummyScreenContainer,
 });
 
