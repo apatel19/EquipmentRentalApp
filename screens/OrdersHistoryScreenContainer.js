@@ -1,10 +1,18 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Button, Alert} from 'react-native';
+import Card from '../components/UI/Card';
 
 const OrdersHistoryScreenContainer = props => {
   return (
     <View style={styles.screen}>
-      <Text>order history - screen</Text>
+      <Card style={styles.card}>
+        <Text>Order Number</Text>
+        <Text>Name</Text>
+        <Text>Price</Text>
+        <Text>Returned Status</Text>
+      </Card>
+
+      <Button title="Reorder" onPress={() => Alert.alert('Reorder')} />
     </View>
   );
 };
@@ -20,6 +28,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    margin: 20,
+  },
+  card: {
+    height: 200,
+    width: '95%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
