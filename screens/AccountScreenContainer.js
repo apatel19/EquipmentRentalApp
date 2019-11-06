@@ -34,7 +34,7 @@ const AccountScreenContainer = props => {
           <Button
             title="My items"
             style={styles.col_sm}
-            onPress={() => Alert.alert('nice work')}
+            onPress={() => goToNextScreen('MyItems')}
           />
         </View>
         <View style={styles.row}>

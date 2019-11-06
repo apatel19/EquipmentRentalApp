@@ -42,3 +42,22 @@ export const SEARCH_DATA = [
     '1 day',
   ),
 ];
+
+export const USER_ITEMS_DATA = [
+  new Search(
+    11598642,
+    'Air Blower',
+    'https://rukminim1.flixcart.com/image/832/832/blower/h/5/n/spt500-stanley-original-imaejfe5ksbzkdqn.jpeg?q=70',
+    'Tommy John',
+    18,
+    '1 day',
+  ),
+  new Search(
+    11598643,
+    'BBQ Grill',
+    'https://images.homedepot-static.com/productImages/d61ed935-1441-4aa8-b47f-42d67dd3060a/svn/royal-gourmet-cart-style-grills-cd1824a-64_1000.jpg',
+    'Shaily Cost',
+    19,
+    '1 day',
+  ),
+];

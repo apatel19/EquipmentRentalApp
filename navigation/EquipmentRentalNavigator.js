@@ -19,7 +19,8 @@ import AccountScreenContainer from '../screens/AccountScreenContainer';
 import OrdersHistoryScreenContainer from '../screens/OrdersHistoryScreenContainer';
 
 import DummyScreenContainer from '../screens/dummyScreen';
-import SupportScreenContainer from '../screens/AccountScreens/SupportScreen'
+import MyItemsContainer from '../screens/AccountScreens/MyItems';
+import SupportScreenContainer from '../screens/AccountScreens/SupportScreen';
 import ChangePasswordContainer from '../screens/AccountScreens/ChangePW';
 
 const defaultStackOption = {
@@ -53,6 +54,7 @@ const AccountStackNavigator = createStackNavigator({
   Account: AccountScreenContainer,
   Support: SupportScreenContainer,
   ChangePassword: ChangePasswordContainer,
+  MyItems: MyItemsContainer,
   Dummy: DummyScreenContainer,
 });
 
