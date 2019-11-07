@@ -1,17 +1,27 @@
 import React from 'react';
 import {FlatList, Button} from 'react-native';
 
+import {useSelector} from 'react-redux';
+
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import {HeaderButton} from 'react-navigation-header-buttons';
 
-import {SEARCH_DATA} from '../data/dummy-data';
 import ProductItem from '../components/UI/ProductItem';
 import Colors from '../constants/Colors';
 
 const SearchScreenContainer = props => {
+  const products = useSelector(state => state.products.availableProducts);
+
+  const goToProductDetail = item => {
+    props.navigation.navigate('ProductDetail', {
+      productId: item.id,
+      productTitle: item.title,
+    });
+  };
+
   return (
     <FlatList
-      data={SEARCH_DATA}
+      data={products}
       keyExtractor={item => item.id}
       renderItem={itemData => (
         <ProductItem
@@ -20,11 +30,15 @@ const SearchScreenContainer = props => {
           title={itemData.item.title}
           price={itemData.item.price}
           image={itemData.item.imageUrl}
-          onSelect={() => {}}>
+          onSelect={() => {
+            goToProductDetail(itemData.item);
+          }}>
           <Button
             color={Colors.primary}
             title="More Info."
-            onPress={() => {}}
+            onPress={() => {
+              goToProductDetail(itemData.item);
+            }}
           />
           <Button
             color={Colors.primary}

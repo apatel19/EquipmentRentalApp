@@ -1,6 +1,6 @@
 import Search from '../models/search';
 
-export const SEARCH_DATA = [
+const SEARCH_DATA = [
   new Search(
     11598639,
     'Lawn Mower',
@@ -42,3 +42,5 @@ export const SEARCH_DATA = [
     '1 day',
   ),
 ];
+
+export default SEARCH_DATA;

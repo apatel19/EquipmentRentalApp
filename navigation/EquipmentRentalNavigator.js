@@ -14,6 +14,7 @@ import RegistrationScreen from '../screens/Auth/RegistrationScreen';
 import HomeScreen from '../screens/Auth/HomeScreen';
 
 import SearchScreenContainer from '../screens/SearchScreenContainer';
+import ProductDetailScreen from '../screens/Shop/ProductDetailScreen';
 import FavoriteScreenContainer from '../screens/FavoriteScreenContainer';
 import AccountScreenContainer from '../screens/AccountScreenContainer';
 import OrdersHistoryScreenContainer from '../screens/OrdersHistoryScreenContainer';
@@ -32,9 +33,8 @@ const AuthNavigator = createStackNavigator({
 });
 
 const SearchStackNavigator = createStackNavigator({
-  Search: {
-    screen: SearchScreenContainer,
-  },
+  Search: SearchScreenContainer,
+  ProductDetail: ProductDetailScreen,
 });
 const OrdersStackNavigator = createStackNavigator({
   Orders: OrdersHistoryScreenContainer,
