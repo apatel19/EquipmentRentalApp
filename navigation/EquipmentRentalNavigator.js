@@ -22,6 +22,7 @@ import DummyScreenContainer from '../screens/dummyScreen';
 import MyItemsContainer from '../screens/AccountScreens/MyItems';
 import SupportScreenContainer from '../screens/AccountScreens/SupportScreen';
 import ChangePasswordContainer from '../screens/AccountScreens/ChangePW';
+import MyOrdersContainer from '../screens/AccountScreens/MyOrders';
 
 const defaultStackOption = {
   headerStyle: {
@@ -55,6 +56,7 @@ const AccountStackNavigator = createStackNavigator({
   Support: SupportScreenContainer,
   ChangePassword: ChangePasswordContainer,
   MyItems: MyItemsContainer,
+  Orders: MyOrdersContainer,
   Dummy: DummyScreenContainer,
 });
 
