@@ -16,7 +16,26 @@ const FORM_INPUT_UPDATE = 'UPDATE';
 
 const formReducer = (state, action) => {
   if (action.type === FORM_INPUT_UPDATE) {
+    const updatedValues = {
+      ...state.inputValues,
+      [action.input]: action.value,
+    };
+    const updatedValidities = {
+      ...state.inputValidities,
+      [action.input]: action.isValid
+    } 
+
+    let updatedFormIsValid = true;
+    for (const key in updatedValidity) {
+      updatedFormIsValid = updatedFormIsValid && updatedValidities[key]
+    } 
+    return {
+      formIsValid: updatedFormIsValid,
+      inputValidities: updatedValidities,
+      inputValues: updatedValues
+    }
   }
+  return state;
 };
 
 const AddItem = props => {
@@ -29,12 +48,12 @@ const AddItem = props => {
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
-      title = editedProduct ? editedProduct.title : '',
+      title : editedProduct ? editedProduct.title : '',
       imageUrl: editedProduct ? editedProduct.imageUrl : '',
       price: '',
       time: editedProduct ? editedProduct.time : ''
     },
-    inputValidity: {
+    inputValidities: {
       title = editedProduct ? true : false,
       imageUrl: editedProduct ? true : false,
       price: editedProduct? true : false,
@@ -44,7 +63,7 @@ const AddItem = props => {
   });
 
   const submitHandler = useCallback(() => {
-    if (!titleIsValid) {
+    if (!formState.formIsValid) {
       Alert.alert('Wrong Input!', 'Please check the error in the form.', [
         {
           text: 'Ok',
@@ -53,23 +72,23 @@ const AddItem = props => {
       return;
     }
     if (editedProduct) {
-      dispatch(productsActions.updateProduct(prodId, title, imageUrl, time));
+      dispatch(productsActions.updateProduct(prodId, formState.inputValues.title, formState.inputValues.imageUrl, formState.inputValues.time));
     } else {
-      dispatch(productsActions.createProduct(title, imageUrl, +price, time));
+      dispatch(productsActions.createProduct(formState.inputValues.title, formState.inputValues.imageUrl, +formState.inputValues.price, formState.inputValues.time));
     }
     props.navigation.goBack();
-  }, [dispatch, prodId, time, imageUrl, title, price, titleIsValid]);
+  }, [dispatch, prodId, formState]);
 
   useEffect(() => {
     props.navigation.setParams({submit: submitHandler});
   }, [submitHandler]);
 
-  const textChangeHandler = text => {
+  const textChangeHandler = (inputIdentifier, text) => {
     let isValid = false;
     if (text.trim().length === 0) {
       isValid = true;
     }
-    dispatchFormState({type: FORM_INPUT_UPDATE, value: text, isValid: isValid, input: 'title'})
+    dispatchFormState({type: FORM_INPUT_UPDATE, value: text, isValid: isValid, input: inputIdentifier})
   };
 
   return (
@@ -79,22 +98,22 @@ const AddItem = props => {
           <Text style={styles.label}> Title</Text>
           <TextInput
             style={styles.input}
-            value={title}
-            onChangeText={titleChangeHandler}
+            value={formState.inputValues.title}
+            onChangeText={textChangeHandler.bind(this, 'title')}
             keyboardType="default"
             autoCapitalize="sentences"
             returnKeyType="next"
             onEndEditing={() => {}}
             onSubmitEditing={() => {}}
           />
-          {!titleIsValid && <Text>Please enter a valid title!</Text>}
+          {!formState.inputValidities.title && <Text>Please enter a valid title!</Text>}
         </View>
         <View style={styles.formControl}>
           <Text style={styles.label}> Image URL</Text>
           <TextInput
             style={styles.input}
-            value={imageUrl}
-            onChangeText={text => setImageUrl(text)}
+            value={formState.inputValues.imageUrl}
+            onChangeText={textChangeHandler.bind(this, 'imageUrl')}
             keyboardType="url"
             autoCapitalize="none"
           />
@@ -105,8 +124,8 @@ const AddItem = props => {
             <Text style={styles.label}> Price </Text>
             <TextInput
               style={styles.input}
-              value={price}
-              onChangeText={text => setPrice(text)}
+              value={formState.inputValues.price}
+              onChangeText={textChangeHandler.bind(this, 'price')}
               keyboardType="decimal-pad"
             />
           </View>
@@ -115,8 +134,8 @@ const AddItem = props => {
           <Text style={styles.label}> Time </Text>
           <TextInput
             style={styles.input}
-            value={time}
-            onChangeText={text => setTime(text)}
+            value={formState.inputValues.time}
+            onChangeText={textChangeHandler.bind(this, 'time')}
             keyboardType="number-pad"
           />
         </View>
