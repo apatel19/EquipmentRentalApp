@@ -27,7 +27,6 @@ import HelpContainer from '../screens/Account/Help/HelpContainer';
 import MyItemsContainer from '../screens/Account/MyItems/MyItemsContainer';
 import PaymentContainer from '../screens/Account/Payments/PaymentContainer';
 import AddItem from '../screens/Account/MyItems/AddItem';
-import UpdateItem from '../screens/Account/MyItems/UpdateItem';
 
 const defaultStackOption = {
   headerStyle: {
@@ -62,7 +61,6 @@ const AccountStackNavigator = createStackNavigator({
   Payment: PaymentContainer,
   MyItems: MyItemsContainer,
   AddItem: AddItem,
-  UpdateItem: UpdateItem,
   Help: HelpContainer,
 });
 
@@ -122,11 +120,11 @@ const EquipmentRentalNavigator = createBottomTabNavigator({
 
 const mainNavigator = createSwitchNavigator(
   {
-    // Auth: AuthNavigator,
+    Auth: AuthNavigator,
     Main: EquipmentRentalNavigator,
   },
   {
-    // initialRouteName: 'Auth',
+    initialRouteName: 'Auth',
   },
 );
 
