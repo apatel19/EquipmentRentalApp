@@ -12,7 +12,6 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  console.log('TYPE:', action.type);
   switch (action.type) {
     case CREATE_PRODUCT:
       const product = action.productData;

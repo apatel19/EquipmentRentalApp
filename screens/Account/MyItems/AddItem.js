@@ -22,18 +22,18 @@ const formReducer = (state, action) => {
     };
     const updatedValidities = {
       ...state.inputValidities,
-      [action.input]: action.isValid
-    } 
+      [action.input]: action.isValid,
+    };
 
     let updatedFormIsValid = true;
-    for (const key in updatedValidity) {
-      updatedFormIsValid = updatedFormIsValid && updatedValidities[key]
-    } 
+    for (const key in updatedValidities) {
+      updatedFormIsValid = updatedFormIsValid && updatedValidities[key];
+    }
     return {
       formIsValid: updatedFormIsValid,
       inputValidities: updatedValidities,
-      inputValues: updatedValues
-    }
+      inputValues: updatedValues,
+    };
   }
   return state;
 };
@@ -48,16 +48,16 @@ const AddItem = props => {
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
-      title : editedProduct ? editedProduct.title : '',
+      title: editedProduct ? editedProduct.title : '',
       imageUrl: editedProduct ? editedProduct.imageUrl : '',
       price: '',
-      time: editedProduct ? editedProduct.time : ''
+      time: editedProduct ? editedProduct.time : '',
     },
     inputValidities: {
-      title = editedProduct ? true : false,
+      title: editedProduct ? true : false,
       imageUrl: editedProduct ? true : false,
-      price: editedProduct? true : false,
-      time: editedProduct ? true : false
+      price: editedProduct ? true : false,
+      time: editedProduct ? true : false,
     },
     formIsValid: editedProduct ? true : false,
   });
@@ -72,9 +72,23 @@ const AddItem = props => {
       return;
     }
     if (editedProduct) {
-      dispatch(productsActions.updateProduct(prodId, formState.inputValues.title, formState.inputValues.imageUrl, formState.inputValues.time));
+      dispatch(
+        productsActions.updateProduct(
+          prodId,
+          formState.inputValues.title,
+          formState.inputValues.imageUrl,
+          formState.inputValues.time,
+        ),
+      );
     } else {
-      dispatch(productsActions.createProduct(formState.inputValues.title, formState.inputValues.imageUrl, +formState.inputValues.price, formState.inputValues.time));
+      dispatch(
+        productsActions.createProduct(
+          formState.inputValues.title,
+          formState.inputValues.imageUrl,
+          +formState.inputValues.price,
+          formState.inputValues.time,
+        ),
+      );
     }
     props.navigation.goBack();
   }, [dispatch, prodId, formState]);
@@ -85,10 +99,15 @@ const AddItem = props => {
 
   const textChangeHandler = (inputIdentifier, text) => {
     let isValid = false;
-    if (text.trim().length === 0) {
+    if (text.trim().length > 0) {
       isValid = true;
     }
-    dispatchFormState({type: FORM_INPUT_UPDATE, value: text, isValid: isValid, input: inputIdentifier})
+    dispatchFormState({
+      type: FORM_INPUT_UPDATE,
+      value: text,
+      isValid: isValid,
+      input: inputIdentifier,
+    });
   };
 
   return (
@@ -106,7 +125,9 @@ const AddItem = props => {
             onEndEditing={() => {}}
             onSubmitEditing={() => {}}
           />
-          {!formState.inputValidities.title && <Text>Please enter a valid title!</Text>}
+          {!formState.inputValidities.title && (
+            <Text>Please enter a valid title!</Text>
+          )}
         </View>
         <View style={styles.formControl}>
           <Text style={styles.label}> Image URL</Text>
