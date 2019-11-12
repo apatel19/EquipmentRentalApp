@@ -1,9 +1,23 @@
-import React, {useState, useEffect, useCallback} from 'react';
-import {ScrollView, TextInput, View, Text, StyleSheet} from 'react-native';
+import React, {useEffect, useCallback, useReducer} from 'react';
+import {
+  ScrollView,
+  TextInput,
+  View,
+  Text,
+  StyleSheet,
+  Alert,
+} from 'react-native';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import HeaderButton from '../../../components/UI/HeaderButton';
 import {useSelector, useDispatch} from 'react-redux';
 import * as productsActions from '../../../store/actions/products';
+
+const FORM_INPUT_UPDATE = 'UPDATE';
+
+const formReducer = (state, action) => {
+  if (action.type === FORM_INPUT_UPDATE) {
+  }
+};
 
 const AddItem = props => {
   const prodId = props.navigation.getParam('productId');
@@ -11,28 +25,52 @@ const AddItem = props => {
   const editedProduct = useSelector(state =>
     state.products.userProducts.find(prod => prod.id === prodId),
   );
-  const [title, setTitle] = useState(editedProduct ? editedProduct.title : '');
-  const [imageUrl, setImageUrl] = useState(
-    editedProduct ? editedProduct.imageUrl : '',
-  );
-  const [price, setPrice] = useState();
-  const [time, setTime] = useState(editedProduct ? editedProduct.time : '');
-
   const dispatch = useDispatch();
 
+  const [formState, dispatchFormState] = useReducer(formReducer, {
+    inputValues: {
+      title = editedProduct ? editedProduct.title : '',
+      imageUrl: editedProduct ? editedProduct.imageUrl : '',
+      price: '',
+      time: editedProduct ? editedProduct.time : ''
+    },
+    inputValidity: {
+      title = editedProduct ? true : false,
+      imageUrl: editedProduct ? true : false,
+      price: editedProduct? true : false,
+      time: editedProduct ? true : false
+    },
+    formIsValid: editedProduct ? true : false,
+  });
+
   const submitHandler = useCallback(() => {
+    if (!titleIsValid) {
+      Alert.alert('Wrong Input!', 'Please check the error in the form.', [
+        {
+          text: 'Ok',
+        },
+      ]);
+      return;
+    }
     if (editedProduct) {
-      console.log('Dispatching UpdateProduct');
       dispatch(productsActions.updateProduct(prodId, title, imageUrl, time));
     } else {
       dispatch(productsActions.createProduct(title, imageUrl, +price, time));
     }
     props.navigation.goBack();
-  }, [dispatch, prodId, time, imageUrl, title, price]);
+  }, [dispatch, prodId, time, imageUrl, title, price, titleIsValid]);
 
   useEffect(() => {
     props.navigation.setParams({submit: submitHandler});
   }, [submitHandler]);
+
+  const textChangeHandler = text => {
+    let isValid = false;
+    if (text.trim().length === 0) {
+      isValid = true;
+    }
+    dispatchFormState({type: FORM_INPUT_UPDATE, value: text, isValid: isValid, input: 'title'})
+  };
 
   return (
     <ScrollView>
@@ -42,8 +80,14 @@ const AddItem = props => {
           <TextInput
             style={styles.input}
             value={title}
-            onChangeText={text => setTitle(text)}
+            onChangeText={titleChangeHandler}
+            keyboardType="default"
+            autoCapitalize="sentences"
+            returnKeyType="next"
+            onEndEditing={() => {}}
+            onSubmitEditing={() => {}}
           />
+          {!titleIsValid && <Text>Please enter a valid title!</Text>}
         </View>
         <View style={styles.formControl}>
           <Text style={styles.label}> Image URL</Text>
@@ -51,6 +95,8 @@ const AddItem = props => {
             style={styles.input}
             value={imageUrl}
             onChangeText={text => setImageUrl(text)}
+            keyboardType="url"
+            autoCapitalize="none"
           />
         </View>
 
@@ -61,6 +107,7 @@ const AddItem = props => {
               style={styles.input}
               value={price}
               onChangeText={text => setPrice(text)}
+              keyboardType="decimal-pad"
             />
           </View>
         )}
@@ -70,6 +117,7 @@ const AddItem = props => {
             style={styles.input}
             value={time}
             onChangeText={text => setTime(text)}
+            keyboardType="number-pad"
           />
         </View>
       </View>
