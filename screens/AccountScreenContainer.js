@@ -1,52 +1,29 @@
 import React from 'react';
-import {View, Text, StyleSheet, Button, Alert} from 'react-native';
-import { SafeAreaView } from 'react-navigation';
+import {ScrollView, FlatList, StyleSheet, Button} from 'react-native';
+import AccountOptions from '../constants/Account';
+import AccountList from '../components/UI/AccountList';
 
 const AccountScreenContainer = props => {
   return (
-    <SafeAreaView style={styles.screen}>
-      <View>
-        <Text>Here's where account details will show up!</Text>
-      
-        <View style={styles.fixToText}>
-          <Button
-              title="change password"
-              onPress={() => Alert.alert('nice work')}
-            />
-          <Button
-            title="preferences"
-            onPress={() => Alert.alert('nice work')}
+    <ScrollView>
+      <FlatList
+        data={AccountOptions}
+        keyExtractor={option => option.id}
+        renderItem={option => (
+          <AccountList
+            title={option.item.name}
+            subtitle={option.item.id === 'accountDetails' ? true : false}
+            subtitleText={
+              option.item.id === 'accountDetails' ? 'test@gmail.com' : ''
+            }
+            iconName={option.item.icon}
+            onPress={() => {
+              props.navigation.navigate(option.item.screen);
+            }}
           />
-        </View>
-        <View style={styles.fixToText}>
-          <Button
-              title="List an item"
-              onPress={() => Alert.alert('nice work')}
-            />
-          <Button
-            title="My items"
-            onPress={() => Alert.alert('nice work')}
-          />
-        </View>
-        <View style={styles.fixToText}>
-          <Button
-              title="My orders"
-              onPress={() => Alert.alert('nice work')}
-            />
-          <Button
-            title="Contact support"
-            onPress={() => Alert.alert('nice work')}
-          />
-        </View>
-        <View style={styles.bottom}>
-          <Button
-            title="Logout"
-            onPress={() =>Alert.alert('redirecting')}
-            />
-          <Text>App version 0.0.2</Text>
-        </View>
-      </View>
-    </SafeAreaView>
+        )}
+      />
+    </ScrollView>
   );
 };
 
@@ -56,23 +33,6 @@ AccountScreenContainer.navigationOptions = navData => {
   };
 };
 
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  fixToText: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    padding: 1,
-  },
-  bottom: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: '#ffff00',
-  }
-});
+const styles = StyleSheet.create({});
 
 export default AccountScreenContainer;

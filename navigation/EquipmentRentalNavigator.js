@@ -14,9 +14,19 @@ import RegistrationScreen from '../screens/Auth/RegistrationScreen';
 import HomeScreen from '../screens/Auth/HomeScreen';
 
 import SearchScreenContainer from '../screens/SearchScreenContainer';
+import ProductDetailScreen from '../screens/Shop/ProductDetailScreen';
+import CartScreen from '../screens/Shop/CartScreen';
 import FavoriteScreenContainer from '../screens/FavoriteScreenContainer';
 import AccountScreenContainer from '../screens/AccountScreenContainer';
 import OrdersHistoryScreenContainer from '../screens/OrdersHistoryScreenContainer';
+
+//Account Option Screens
+import AccountDetailContainer from '../screens/Account/AccountDetail/AccountDetailContainer';
+import AddressContainer from '../screens/Account/Address/AddressContainer';
+import HelpContainer from '../screens/Account/Help/HelpContainer';
+import MyItemsContainer from '../screens/Account/MyItems/MyItemsContainer';
+import PaymentContainer from '../screens/Account/Payments/PaymentContainer';
+import AddItem from '../screens/Account/MyItems/AddItem';
 
 const defaultStackOption = {
   headerStyle: {
@@ -32,9 +42,9 @@ const AuthNavigator = createStackNavigator({
 });
 
 const SearchStackNavigator = createStackNavigator({
-  Search: {
-    screen: SearchScreenContainer,
-  },
+  Search: SearchScreenContainer,
+  ProductDetail: ProductDetailScreen,
+  Cart: CartScreen,
 });
 const OrdersStackNavigator = createStackNavigator({
   Orders: OrdersHistoryScreenContainer,
@@ -46,6 +56,12 @@ const FavoriteStackNavigator = createStackNavigator({
 
 const AccountStackNavigator = createStackNavigator({
   Account: AccountScreenContainer,
+  AccountDetail: AccountDetailContainer,
+  Address: AddressContainer,
+  Payment: PaymentContainer,
+  MyItems: MyItemsContainer,
+  AddItem: AddItem,
+  Help: HelpContainer,
 });
 
 const EquipmentRentalNavigator = createBottomTabNavigator({
@@ -54,9 +70,9 @@ const EquipmentRentalNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarIcon: tabInfo => {
         return Platform.OS === 'android' ? (
-          <Icon name="md-settings" size={25} color={tabInfo.tintColor} />
+          <Icon name="md-person" size={27} color={tabInfo.tintColor} />
         ) : (
-          <Icon name="ios-settings" size={25} color={tabInfo.tintColor} />
+          <Icon name="ios-person" size={27} color={tabInfo.tintColor} />
         );
       },
       tabBarColor: Colors.primaryColor,
