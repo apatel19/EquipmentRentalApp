@@ -1,17 +1,19 @@
 import React from 'react';
-import {FlatList, Button} from 'react-native';
+import {FlatList, Button, Platform} from 'react-native';
 
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
-import {HeaderButton} from 'react-navigation-header-buttons';
 
 import ProductItem from '../components/UI/ProductItem';
 import Colors from '../constants/Colors';
+import HeaderButton from '../components/UI/HeaderButton';
+import * as cartActions from '../store/actions/cart';
 
 const SearchScreenContainer = props => {
   const products = useSelector(state => state.products.availableProducts);
-
+  console.log('PRODUCTS: ', products);
+  const disptach = useDispatch();
   const goToProductDetail = item => {
     props.navigation.navigate('ProductDetail', {
       productId: item.id,
@@ -25,11 +27,10 @@ const SearchScreenContainer = props => {
       keyExtractor={item => item.id}
       renderItem={itemData => (
         <ProductItem
-          onViewDetail={() => {}}
-          onAddToCart={() => {}}
           title={itemData.item.title}
           price={itemData.item.price}
           image={itemData.item.imageUrl}
+          time={itemData.item.time}
           onSelect={() => {
             goToProductDetail(itemData.item);
           }}>
@@ -43,7 +44,9 @@ const SearchScreenContainer = props => {
           <Button
             color={Colors.primary}
             title="Add to Cart"
-            onPress={() => {}}
+            onPress={() => {
+              disptach(cartActions.addToCart(itemData.item));
+            }}
           />
         </ProductItem>
       )}
@@ -56,7 +59,13 @@ SearchScreenContainer.navigationOptions = navData => {
     headerTitle: 'Search',
     headerRight: (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
-        <Item title="Cart" onPress={() => {}} />
+        <Item
+          title="Cart"
+          iconName={Platform.OS === 'android' ? 'md-cart' : 'ios-cart'}
+          onPress={() => {
+            navData.navigation.navigate('Cart');
+          }}
+        />
       </HeaderButtons>
     ),
   };

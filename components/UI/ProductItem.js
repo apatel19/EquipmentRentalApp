@@ -29,7 +29,7 @@ const ProductItem = props => {
               <Text style={styles.title}>{props.title}</Text>
               <View style={styles.priceContainer}>
                 <Text style={styles.price}>${props.price.toFixed(2)}</Text>
-                <Text style={styles.perDay}>/ Day</Text>
+                <Text style={styles.perDay}>/ {props.time}</Text>
               </View>
             </View>
             <View style={styles.action}>{props.children}</View>
