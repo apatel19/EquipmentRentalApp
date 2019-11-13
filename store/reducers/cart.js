@@ -40,7 +40,6 @@ export default (state = initialState, action) => {
       const selectedCartItem = state.items[action.pid];
       const currentQty = selectedCartItem.quantity;
       let updatedCartItems;
-      console.log('Current Quantity', currentQty);
       if (currentQty > 1) {
         //Need to reduce quantity
         const updatedCartItem = new CartItem(

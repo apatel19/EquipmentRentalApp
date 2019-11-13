@@ -12,7 +12,6 @@ import * as cartActions from '../store/actions/cart';
 
 const SearchScreenContainer = props => {
   const products = useSelector(state => state.products.availableProducts);
-  console.log('PRODUCTS: ', products);
   const disptach = useDispatch();
   const goToProductDetail = item => {
     props.navigation.navigate('ProductDetail', {
