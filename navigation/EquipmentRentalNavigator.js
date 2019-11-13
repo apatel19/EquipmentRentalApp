@@ -120,11 +120,11 @@ const EquipmentRentalNavigator = createBottomTabNavigator({
 
 const mainNavigator = createSwitchNavigator(
   {
-    //Auth: AuthNavigator,
+    Auth: AuthNavigator,
     Main: EquipmentRentalNavigator,
   },
   {
-    //initialRouteName: 'Auth',
+    initialRouteName: 'Auth',
   },
 );
 
