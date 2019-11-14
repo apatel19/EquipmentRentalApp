@@ -118,6 +118,13 @@ const AddItem = props => {
 
   const inputChangeHandler = useCallback(
     (inputIdentifier, inputValue, inputValidity) => {
+      console.log(
+        'Dispatching form input state: ',
+        inputIdentifier,
+        inputValue,
+        inputValidity,
+      );
+
       dispatchFormState({
         type: FORM_INPUT_UPDATE,
         value: inputValue,
