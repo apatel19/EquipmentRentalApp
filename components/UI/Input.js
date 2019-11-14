@@ -50,6 +50,7 @@ const Input = props => {
       isValid = false;
     }
     if (props.max != null && +text > props.max) {
+      console.log('Changing to false!!');
       isValid = false;
     }
     if (props.minLength != null && text.length < props.minLength) {

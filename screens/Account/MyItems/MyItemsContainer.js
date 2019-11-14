@@ -1,5 +1,13 @@
-import React from 'react';
-import {StyleSheet, Platform, FlatList, Button, Alert} from 'react-native';
+import React, {useCallback, useEffect, useState} from 'react';
+import {
+  View,
+  StyleSheet,
+  Platform,
+  FlatList,
+  Button,
+  Alert,
+  ActivityIndicator,
+} from 'react-native';
 
 import {useSelector, useDispatch} from 'react-redux';
 
@@ -13,7 +21,35 @@ import * as productActions from '../../../store/actions/products';
 
 const MyItemsContainer = props => {
   const userProducts = useSelector(state => state.products.userProducts);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
   const dispatch = useDispatch();
+
+  const loadUserProducts = useCallback(async () => {
+    console.log('Load User Products');
+    setError(null);
+    setIsLoading(true);
+    try {
+      await dispatch(productActions.fetchProducts());
+    } catch (err) {
+      setError(err.message);
+    }
+    setIsLoading(false);
+  }, [dispatch, setIsLoading, setError]);
+
+  useEffect(() => {
+    const willFocusSub = props.navigation.addListener(
+      'willFocus',
+      loadUserProducts,
+    );
+    return () => {
+      willFocusSub.remove();
+    };
+  }, [loadUserProducts]);
+
+  useEffect(() => {
+    loadUserProducts();
+  }, [dispatch, loadUserProducts]);
 
   const goToEditProduct = productId => {
     props.navigation.navigate('AddItem', {
@@ -33,6 +69,35 @@ const MyItemsContainer = props => {
       },
     ]);
   };
+
+  if (error) {
+    return (
+      <View style={styles.centered}>
+        <Text style={styles.noProductText}>An error fetching data!</Text>
+        <Button
+          title="Try Again!"
+          onPress={loadUserProducts}
+          color={Colors.primary}
+        />
+      </View>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <View style={styles.centered}>
+        <ActivityIndicator size="large" color={Colors.primary} />
+      </View>
+    );
+  }
+
+  if (!isLoading && userProducts.length === 0) {
+    return (
+      <View style={styles.centered}>
+        <Text style={styles.noProductText}>No Products Found!</Text>
+      </View>
+    );
+  }
 
   return (
     <FlatList
@@ -72,9 +137,16 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
   },
+  centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  noProductText: {
+    fontSize: 18,
+    color: 'red',
+  },
 });
-
-export default MyItemsContainer;
 
 MyItemsContainer.navigationOptions = navData => {
   return {
@@ -94,3 +166,5 @@ MyItemsContainer.navigationOptions = navData => {
     ),
   };
 };
+
+export default MyItemsContainer;
