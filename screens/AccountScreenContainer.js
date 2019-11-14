@@ -1,8 +1,10 @@
 import React from 'react';
-import {View, Text, StyleSheet, Button, Alert} from 'react-native';
+import {ScrollView, FlatList, View, Text, StyleSheet, Button, Alert} from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import Colors from '../constants/Colors.js'
 import DummyScreenContainer from '../screens/dummyScreen'
+import AccountOptions from '../constants/Account';
+import AccountList from '../components/UI/AccountList';
 
 const AccountScreenContainer = props => {
   const goToNextScreen = (Title) => {
@@ -11,51 +13,25 @@ const AccountScreenContainer = props => {
   };
 
   return (
-    <SafeAreaView style={styles.screen}>
-      <View>
-        <Text>Here's where account details will show up!</Text>
-      
-        <View style={styles.row}>
-          <Button
-              title="change password"
-              onPress={() => goToNextScreen('ChangePassword')}
-            />
-          <Button
-            title="preferences"
-            onPress={() => Alert.alert('nice work')}
+    <ScrollView>
+      <FlatList
+        data={AccountOptions}
+        keyExtractor={option => option.id}
+        renderItem={option => (
+          <AccountList
+            title={option.item.name}
+            subtitle={option.item.id === 'accountDetails' ? true : false}
+            subtitleText={
+              option.item.id === 'accountDetails' ? 'test@gmail.com' : ''
+            }
+            iconName={option.item.icon}
+            onPress={() => {
+              props.navigation.navigate(option.item.screen);
+            }}
           />
-        </View>
-        <View style={styles.row}>
-          <Button
-              title="List an item"
-              style={styles.col_lg}
-              onPress={() => Alert.alert('nice work')}
-            />
-          <Button
-            title="My items"
-            style={styles.col_sm}
-            onPress={() => goToNextScreen('MyItems')}
-          />
-        </View>
-        <View style={styles.row}>
-          <Button
-              title="My orders"
-              onPress={() => Alert.alert('nice work')}
-            />
-          <Button
-            title="Contact support"
-            onPress={() => goToNextScreen('Support')}
-          />
-        </View>
-        <View style={styles.bottom}>
-          <Button
-            title="Logout"
-            onPress={() =>Alert.alert('redirecting')}
-            />
-          <Text>App version 0.0.2</Text>
-        </View>
-      </View>
-    </SafeAreaView>
+        )}
+      />
+    </ScrollView>
   );
 };
 
@@ -76,35 +52,6 @@ AccountScreenContainer.navigationOptions = navData => {
   };
 };
 
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  row: {
-    flex: 3,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    textAlign: 'center',
-    padding: 1,
-  },
-  col_lg: {
-    flex: 2,
-    flexDirection: 'column',
-    color: Colors.lightGray,
-  },
-  col_sm: {
-    flex: 1,
-    flexDirection: 'column',
-    color: Colors.darkGray,
-  },
-  bottom: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: Colors.warningRed,
-  }
-});
+const styles = StyleSheet.create({});
 
 export default AccountScreenContainer;

@@ -4,4 +4,6 @@ export default {
   warningRed: '#d1160d',
   darkGray: '#5b5a69',
   lightGray: '#d5d5db',
+  primary: '#4a148c',
+  accent: '#ff6f00',
 };

@@ -1,6 +1,7 @@
-class Search {
-  constructor(id, title, imageUrl, ownerName, price, time) {
+class Product {
+  constructor(id, userId, title, imageUrl, ownerName, price, time) {
     this.id = id;
+    this.userId = userId;
     this.title = title;
     this.imageUrl = imageUrl;
     this.ownerName = ownerName;
@@ -9,4 +10,4 @@ class Search {
   }
 }
 
-export default Search;
+export default Product;
