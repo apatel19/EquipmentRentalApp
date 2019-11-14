@@ -32,9 +32,7 @@ const Input = props => {
   const {onInputChange, id} = props;
 
   useEffect(() => {
-    if (inputState.touched) {
-      onInputChange(id, inputState.value, inputState.isValid);
-    }
+    onInputChange(id, inputState.value, inputState.isValid);
   }, [inputState, onInputChange, id]);
 
   const textChangeHandler = text => {
@@ -50,13 +48,11 @@ const Input = props => {
       isValid = false;
     }
     if (props.max != null && +text > props.max) {
-      console.log('Changing to false!!');
       isValid = false;
     }
     if (props.minLength != null && text.length < props.minLength) {
       isValid = false;
     }
-
     dispatch({type: INPUT_CHANGE, value: text, isValid: isValid});
   };
 
