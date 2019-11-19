@@ -21,28 +21,44 @@ export const fetchProducts = () => {
 
       const resData = await response.json();
       //console.log(resData);
-      const loadedProduct = [];
+      const loadedProducts = [];
+      const userProducts = [];
 
       for (const key in resData) {
-        loadedProduct.push(
-          new Product(
-            key,
-            String(userId),
-            resData[key].title,
-            resData[key].imageUrl,
-            name,
-            resData[key].price,
-            resData[key].time,
-          ),
-        );
+        if (resData[key].ownerId === userId) {
+          userProducts.push(
+            new Product(
+              key,
+              resData[key].ownerId,
+              resData[key].title,
+              resData[key].imageUrl,
+              name,
+              resData[key].price,
+              resData[key].time,
+            ),
+          );
+        } else {
+          loadedProducts.push(
+            new Product(
+              key,
+              resData[key].ownerId,
+              resData[key].title,
+              resData[key].imageUrl,
+              name,
+              resData[key].price,
+              resData[key].time,
+            ),
+          );
+        }
       }
-      console.log(loadedProduct);
+      // console.log(loadedProduct);
       dispatch({
         type: SET_PRODUCTS,
-        products: loadedProduct,
-        userProducts: loadedProduct.filter(
-          prod => prod.ownerId === String(userId),
-        ),
+        products: loadedProducts,
+        userProducts: userProducts,
+        //loadedProduct.filter(
+        //prod => prod.userId === String(userId),
+        //),
       });
     } catch (err) {
       throw err;

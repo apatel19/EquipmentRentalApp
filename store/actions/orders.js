@@ -16,7 +16,6 @@ export const fetchOrders = () => {
       }
 
       const resData = await response.json();
-      //console.log(resData);
       const loadedOrders = [];
 
       for (const key in resData) {

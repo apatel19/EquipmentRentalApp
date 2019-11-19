@@ -101,15 +101,6 @@ const AuthScreen = props => {
           ),
         );
       }
-
-      //   await dispatch(
-      //     setUserActions.setuser(
-      //       formState.inputValues.name,
-      //       formState.inputValues.email,
-      //       token,
-      //     ),
-      //   );
-
       props.navigation.navigate('Search');
     } catch (err) {
       setError(err.message);
