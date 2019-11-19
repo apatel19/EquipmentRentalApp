@@ -11,11 +11,10 @@ import {
 
 import {useSelector, useDispatch} from 'react-redux';
 
-import {HeaderButtons, Item} from 'react-navigation-header-buttons';
-
 import ProductItem from '../components/UI/ProductItem';
 import Colors from '../constants/Colors';
 import HeaderButton from '../components/UI/HeaderButton';
+import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 
 import * as cartActions from '../store/actions/cart';
 import * as productActions from '../store/actions/products';

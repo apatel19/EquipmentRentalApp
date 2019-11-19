@@ -4,7 +4,6 @@ import AccountOptions from '../constants/Account';
 import AccountList from '../components/UI/AccountList';
 
 const AccountScreenContainer = props => {
-  console.log(props);
   return (
     <ScrollView>
       <FlatList
