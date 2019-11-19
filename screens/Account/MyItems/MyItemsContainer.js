@@ -27,7 +27,6 @@ const MyItemsContainer = props => {
   const dispatch = useDispatch();
 
   const loadUserProducts = useCallback(async () => {
-    console.log('Load User Products');
     setError(null);
     setIsLoading(true);
     try {
