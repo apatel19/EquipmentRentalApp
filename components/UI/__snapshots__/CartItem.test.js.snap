@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card snapshot match test 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "white",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "marginHorizontal": 20,
+      "padding": 10,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#888",
+          "fontSize": 16,
+        }
+      }
+    />
+    <Text
+      style={
+        Object {
+          "fontSize": 16,
+        }
+      }
+    />
+  </Text>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 16,
+        }
+      }
+    >
+      $
+    </Text>
+  </View>
+</View>
+`;

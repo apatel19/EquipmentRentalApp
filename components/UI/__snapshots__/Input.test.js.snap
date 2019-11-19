@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card snapshot match test 1`] = `
+<View
+  style={
+    Object {
+      "width": "100%",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "fontSize": 16,
+        "marginVertical": 8,
+      }
+    }
+  />
+  <TextInput
+    allowFontScaling={true}
+    onBlur={[Function]}
+    onChangeText={[Function]}
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "borderBottomColor": "#ccc",
+        "borderBottomWidth": 1,
+        "borderColor": "black",
+        "borderWidth": 1,
+        "paddingHorizontal": 2,
+        "paddingVertical": 5,
+      }
+    }
+    underlineColorAndroid="transparent"
+    value=""
+  />
+</View>
+`;

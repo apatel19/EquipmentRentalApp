@@ -7,6 +7,7 @@ import {
   Button,
   Alert,
   ActivityIndicator,
+  Text,
 } from 'react-native';
 
 import {useSelector, useDispatch} from 'react-redux';
@@ -26,7 +27,6 @@ const MyItemsContainer = props => {
   const dispatch = useDispatch();
 
   const loadUserProducts = useCallback(async () => {
-    console.log('Load User Products');
     setError(null);
     setIsLoading(true);
     try {
