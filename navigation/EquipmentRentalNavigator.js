@@ -28,6 +28,8 @@ import MyItemsContainer from '../screens/Account/MyItems/MyItemsContainer';
 import PaymentContainer from '../screens/Account/Payments/PaymentContainer';
 import AddItem from '../screens/Account/MyItems/AddItem';
 
+import AuthScreen from '../screens/Auth/AuthScreen';
+
 const defaultStackOption = {
   headerStyle: {
     backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : '',
@@ -36,9 +38,10 @@ const defaultStackOption = {
 };
 
 const AuthNavigator = createStackNavigator({
-  Home: HomeScreen,
-  Login: LoginScreen,
-  Registration: RegistrationScreen,
+  Home: AuthScreen,
+  // Home: HomeScreen,
+  // Login: LoginScreen,
+  // Registration: RegistrationScreen,
 });
 
 const SearchStackNavigator = createStackNavigator({

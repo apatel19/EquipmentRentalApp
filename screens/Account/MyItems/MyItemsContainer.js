@@ -7,6 +7,7 @@ import {
   Button,
   Alert,
   ActivityIndicator,
+  Text,
 } from 'react-native';
 
 import {useSelector, useDispatch} from 'react-redux';
