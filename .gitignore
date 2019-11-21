@@ -59,3 +59,6 @@ buck-out/
 /ios/Pods/
 /ios/Podfile
 /ios/Podfile.lock
+
+# api keys
+.env
