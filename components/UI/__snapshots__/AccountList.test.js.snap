@@ -81,7 +81,7 @@ exports[`Card snapshot match test 1`] = `
             ]
           }
         >
-          ?
+          
         </Text>
       </View>
     </View>

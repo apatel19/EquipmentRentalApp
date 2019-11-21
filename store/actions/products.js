@@ -6,7 +6,9 @@ export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 export const SET_PRODUCTS = 'SET_PRODUCTS';
 
 export const fetchProducts = () => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    const userId = getState().auth.userId;
+    const name = getState().auth.name;
     //any async code we want!
     try {
       const response = await fetch(
@@ -18,24 +20,44 @@ export const fetchProducts = () => {
       }
 
       const resData = await response.json();
-      //console.log(resData);
-      const loadedProduct = [];
+      const loadedProducts = [];
+      const userProducts = [];
 
       for (const key in resData) {
-        loadedProduct.push(
-          new Product(
-            key,
-            'u1',
-            resData[key].title,
-            resData[key].imageUrl,
-            'Apurva Patel',
-            resData[key].price,
-            resData[key].time,
-          ),
-        );
+        if (resData[key].ownerId === userId) {
+          userProducts.push(
+            new Product(
+              key,
+              resData[key].ownerId,
+              resData[key].title,
+              resData[key].imageUrl,
+              name,
+              resData[key].price,
+              resData[key].time,
+            ),
+          );
+        } else {
+          loadedProducts.push(
+            new Product(
+              key,
+              resData[key].ownerId,
+              resData[key].title,
+              resData[key].imageUrl,
+              name,
+              resData[key].price,
+              resData[key].time,
+            ),
+          );
+        }
       }
-
-      dispatch({type: SET_PRODUCTS, products: loadedProduct});
+      dispatch({
+        type: SET_PRODUCTS,
+        products: loadedProducts,
+        userProducts: userProducts,
+        //loadedProduct.filter(
+        //prod => prod.userId === String(userId),
+        //),
+      });
     } catch (err) {
       throw err;
     }
@@ -43,9 +65,10 @@ export const fetchProducts = () => {
 };
 
 export const deleteProduct = productId => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    const token = getState().auth.token;
     const response = await fetch(
-      `https://equipmentrental-97ece.firebaseio.com/products/${productId}.json`,
+      `https://equipmentrental-97ece.firebaseio.com/products/${productId}.json?auth=${token}`,
       {
         method: 'DELETE',
       },
@@ -63,10 +86,12 @@ export const deleteProduct = productId => {
 };
 
 export const createProduct = (title, imageUrl, price, time) => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
     //any async code we want!
+    const token = getState().auth.token;
+    const userId = getState().auth.userId;
     const response = await fetch(
-      'https://equipmentrental-97ece.firebaseio.com/products.json',
+      `https://equipmentrental-97ece.firebaseio.com/products.json?auth=${token}`,
       {
         method: 'POST',
         headers: {
@@ -77,6 +102,7 @@ export const createProduct = (title, imageUrl, price, time) => {
           imageUrl,
           price,
           time,
+          ownerId: userId,
         }),
       },
     );
@@ -93,15 +119,17 @@ export const createProduct = (title, imageUrl, price, time) => {
         imageUrl,
         price,
         time,
+        ownerId: userId,
       },
     });
   };
 };
 
 export const updateProduct = (id, title, imageUrl, time) => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    const token = getState().auth.token;
     const response = await fetch(
-      `https://equipmentrental-97ece.firebaseio.com/products/${id}.json`,
+      `https://equipmentrental-97ece.firebaseio.com/products/${id}.json?auth=${token}`,
       {
         method: 'PATCH',
         headers: {
