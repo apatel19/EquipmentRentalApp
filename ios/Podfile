@@ -46,6 +46,7 @@ target 'EquipmentRental' do
       # "Multiple commands produce ... libReact.a"
       # "Multiple commands produce ... libyoga.a"
 
+      # uncomment this part to remove yoga error
       # targets_to_ignore = %w(React yoga)
       
       # if targets_to_ignore.include? target.name
