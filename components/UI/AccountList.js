@@ -16,15 +16,7 @@ const AccountList = props => {
             )}
           </View>
           <View style={styles.iconContainer}>
-            <Icon
-              name={
-                Platform.OS === 'android'
-                  ? 'md-' + props.iconName
-                  : 'ios-' + props.iconName
-              }
-              size={23}
-              color={'black'}
-            />
+            <Icon name={props.iconName} size={23} color={'black'} />
           </View>
         </View>
       </TouchableOpacity>

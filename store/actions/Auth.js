@@ -30,27 +30,10 @@ export const signup = (email, password, name) => {
 
     const resData = await response.json();
 
-    // await fetch(
-    //   `https://equipmentrental-97ece.firebaseio.com/users/${resData.localId}.json?auth=${resData.idToken}`,
-    //   {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({
-    //       email: email,
-    //       name: name,
-    //       userId: resData.localId,
-    //     }),
-    //   },
-    // );
-
     dispatch({
       type: SIGNUP,
       token: resData.idToken,
       userId: resData.localId,
-      // email: email,
-      // name: name,
     });
   };
 };
@@ -85,29 +68,10 @@ export const login = (email, password) => {
 
     const resData = await response.json();
 
-    console.log(resData);
-
-    // await fetch(
-    //   `https://equipmentrental-97ece.firebaseio.com/users/${resData.localId}.json?auth=${resData.idToken}`,
-    //   {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({
-    //       email: email,
-    //       name: name,
-    //       userId: resData.localId,
-    //     }),
-    //   },
-    // );
-
     dispatch({
       type: LOGIN,
       token: resData.idToken,
       userId: resData.localId,
-      // email: email,
-      // name: name,
     });
   };
 };

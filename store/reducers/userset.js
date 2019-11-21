@@ -1,18 +1,15 @@
 import {SET_USER} from '../actions/userset';
 
 const initialState = {
-  email: '',
-  name: '',
-  ownerId: '',
+  user: '',
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case SET_USER:
       return {
-        email: action.user.email,
-        name: action.user.name,
-        ownerId: action.user.ownerId,
+        ...state,
+        user: action.user,
       };
     default:
       return state;

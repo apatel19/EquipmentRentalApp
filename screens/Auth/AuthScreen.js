@@ -93,6 +93,13 @@ const AuthScreen = props => {
             formState.inputValues.name,
           ),
         );
+        //Here save use name and data to Database after creation
+        await dispatch(
+          setUserActions.setuser(
+            formState.inputValues.name,
+            formState.inputValues.email,
+          ),
+        );
       } else {
         await dispatch(
           authActions.login(
@@ -100,6 +107,9 @@ const AuthScreen = props => {
             formState.inputValues.password,
           ),
         );
+
+        //Here fetch data after signin
+        await dispatch(setUserActions.getUser());
       }
       props.navigation.navigate('Search');
     } catch (err) {

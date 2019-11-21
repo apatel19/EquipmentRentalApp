@@ -20,7 +20,6 @@ export const fetchProducts = () => {
       }
 
       const resData = await response.json();
-      //console.log(resData);
       const loadedProducts = [];
       const userProducts = [];
 
@@ -51,7 +50,6 @@ export const fetchProducts = () => {
           );
         }
       }
-      // console.log(loadedProduct);
       dispatch({
         type: SET_PRODUCTS,
         products: loadedProducts,
