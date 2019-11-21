@@ -1,10 +1,14 @@
+import {REACT_NATIVE_APP_GOOGLE_API_KEY} from 'react-native-dotenv';
+
 export const SIGNUP = 'SIGNUP';
 export const LOGIN = 'LOGIN';
 
 export const signup = (email, password, name) => {
   return async dispatch => {
+    console.log('API:', REACT_NATIVE_APP_GOOGLE_API_KEY);
+
     const response = await fetch(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDQeyuI-UBA9Q7a4YgZWCT0k_Gfok0S460',
+      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${REACT_NATIVE_APP_GOOGLE_API_KEY}`,
       {
         method: 'POST',
         headers: {
