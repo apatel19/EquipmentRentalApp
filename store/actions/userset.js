@@ -1,7 +1,8 @@
 import User from '../../models/user';
+import Address from '../../models/address';
 
 export const SET_USER = 'SET_USER';
-export const GET_USER = 'GET_USER';
+export const SET_ADDRESS = 'SET_ADDRESS';
 
 export const setuser = (name, email) => {
   return async (dispatch, getState) => {
@@ -59,6 +60,79 @@ export const getUser = () => {
       dispatch({
         type: SET_USER,
         user: user,
+      });
+    } catch (err) {
+      throw err;
+    }
+  };
+};
+
+export const setUserAddress = (street, apartment, city, state, zipcode) => {
+  return async (dispatch, getState) => {
+    const token = getState().auth.token;
+    const userId = getState().auth.userId;
+
+    const response = await fetch(
+      `https://equipmentrental-97ece.firebaseio.com/users/${userId}.json/?auth=${token}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          street,
+          apartment,
+          city,
+          state,
+          zipcode,
+        }),
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error('Something went wront in seting user address!');
+    }
+
+    const address = new Address(street, apartment, city, state, zipcode);
+    dispatch({
+      type: SET_ADDRESS,
+      address: address,
+    });
+  };
+};
+
+export const getUserAddress = () => {
+  return async (dispatch, getState) => {
+    const userId = getState().auth.userId;
+    try {
+      const response = await fetch(
+        `https://equipmentrental-97ece.firebaseio.com/users/${userId}.json/`,
+      );
+
+      if (!response.ok) {
+        throw new Error('Something went wring in getting user address.');
+      }
+
+      const resData = await response.json();
+      let address;
+
+      for (const key in resData) {
+        address = new Address(
+          resData[key].street,
+          resData[key].apartment,
+          resData[key].city,
+          resData[key].state,
+          resData[key].zipcode,
+        );
+      }
+
+      if (!address.street) {
+        return 'AddressNotSaved';
+      }
+
+      dispatch({
+        type: SET_ADDRESS,
+        address: address,
       });
     } catch (err) {
       throw err;

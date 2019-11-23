@@ -1,7 +1,8 @@
-import {SET_USER} from '../actions/userset';
+import {SET_USER, SET_ADDRESS} from '../actions/userset';
 
 const initialState = {
   user: '',
+  address: '',
 };
 
 export default (state = initialState, action) => {
@@ -10,6 +11,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         user: action.user,
+      };
+    case SET_ADDRESS:
+      return {
+        ...state,
+        address: action.address,
       };
     default:
       return state;

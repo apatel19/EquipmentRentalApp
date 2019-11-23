@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, FlatList, StyleSheet, Platform} from 'react-native';
+import {ScrollView, FlatList, Platform} from 'react-native';
 import AccountOptions from '../constants/Account';
 import AccountList from '../components/UI/AccountList';
 
@@ -24,7 +24,10 @@ const AccountScreenContainer = props => {
                 : `ios-${option.item.icon}`
             }
             onPress={() => {
-              props.navigation.navigate(option.item.screen);
+              props.navigation.navigate({
+                routeName: option.item.screen,
+                params: {prevScreen: 'AccountScreenContainer'},
+              });
             }}
           />
         )}
@@ -38,7 +41,5 @@ AccountScreenContainer.navigationOptions = navData => {
     headerTitle: 'My Account',
   };
 };
-
-const styles = StyleSheet.create({});
 
 export default AccountScreenContainer;
