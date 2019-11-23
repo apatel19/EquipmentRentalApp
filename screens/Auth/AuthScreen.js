@@ -115,7 +115,6 @@ const AuthScreen = props => {
         );
         await dispatch(setUserActions.getUser());
         const res = await dispatch(setUserActions.getUserAddress());
-        console.log(res);
         if (res === 'AddressNotSaved') {
           props.navigation.navigate({
             routeName: 'AuthAddress',
