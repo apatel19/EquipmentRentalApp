@@ -49,6 +49,8 @@ const AuthScreen = props => {
   const [error, setError] = useState();
   const dispatch = useDispatch();
 
+  const address = useReducer(state => state.user.address);
+
   const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
       email: '',
@@ -100,6 +102,10 @@ const AuthScreen = props => {
             formState.inputValues.email,
           ),
         );
+        props.navigation.navigate({
+          routeName: 'AuthAddress',
+          params: {prevScreen: 'Auth'},
+        });
       } else {
         await dispatch(
           authActions.login(
@@ -107,16 +113,23 @@ const AuthScreen = props => {
             formState.inputValues.password,
           ),
         );
-
-        //Here fetch data after signin
         await dispatch(setUserActions.getUser());
+        const res = await dispatch(setUserActions.getUserAddress());
+        console.log(res);
+        if (res === 'AddressNotSaved') {
+          props.navigation.navigate({
+            routeName: 'AuthAddress',
+            params: {prevScreen: 'Auth'},
+          });
+        } else {
+          props.navigation.navigate('Search');
+        }
       }
-      props.navigation.navigate('Search');
     } catch (err) {
       setError(err.message);
       setIsLoading(false);
     }
-  }, [dispatch, formState]);
+  }, [dispatch, formState, address]);
 
   return (
     <KeyboardAvoidingView

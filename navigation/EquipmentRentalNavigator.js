@@ -9,9 +9,9 @@ import {Platform} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Colors from '../constants/Colors';
 
-import LoginScreen from '../screens/Auth/LoginScreen';
-import RegistrationScreen from '../screens/Auth/RegistrationScreen';
-import HomeScreen from '../screens/Auth/HomeScreen';
+// import LoginScreen from '../screens/Auth/LoginScreen';
+// import RegistrationScreen from '../screens/Auth/RegistrationScreen';
+// import HomeScreen from '../screens/Auth/HomeScreen';
 
 import SearchScreenContainer from '../screens/SearchScreenContainer';
 import ProductDetailScreen from '../screens/Shop/ProductDetailScreen';
@@ -121,9 +121,20 @@ const EquipmentRentalNavigator = createBottomTabNavigator({
   },
 });
 
+const AuthAddressNavigator = createStackNavigator({
+  AuthAddress: {
+    screen: AddressContainer,
+    navigationOptions: {
+      title: 'Add Address',
+      headerTitleStyle: {textAlign: 'center', alignSelf: 'center'},
+    },
+  },
+});
+
 const mainNavigator = createSwitchNavigator(
   {
     Auth: AuthNavigator,
+    AuthAddressNavigator: AuthAddressNavigator,
     Main: EquipmentRentalNavigator,
   },
   {

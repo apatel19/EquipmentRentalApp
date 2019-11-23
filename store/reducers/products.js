@@ -1,4 +1,3 @@
-import SEARCH_DATA from '../../data/dummy-data';
 import {
   DELETE_PRODUCT,
   CREATE_PRODUCT,
