@@ -123,8 +123,8 @@ const setLogoutTimer = expirationTime => {
   };
 };
 
-const saveDataToStorage = (token, userId, expirationDate) => {
-  AsyncStorage.setItem(
+const saveDataToStorage = async (token, userId, expirationDate) => {
+  await AsyncStorage.setItem(
     'userData',
     JSON.stringify({
       token: token,

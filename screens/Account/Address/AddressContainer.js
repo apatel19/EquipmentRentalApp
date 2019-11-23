@@ -2,7 +2,6 @@ import React, {useReducer, useState, useCallback, useEffect} from 'react';
 import {
   View,
   StyleSheet,
-  Button,
   ScrollView,
   KeyboardAvoidingView,
   Alert,
@@ -75,7 +74,6 @@ const AddressContainer = props => {
   }, [error]);
 
   const submitHandler = useCallback(async () => {
-    console.log(formState);
     if (!formState.formIsValid) {
       Alert.alert('Wrong Input!', 'Please check the error in the form.', [
         {
@@ -87,18 +85,28 @@ const AddressContainer = props => {
     setError(null);
     setIsLoading(true);
     try {
-      await dispatch(
-        usersetActions.setUserAddress(
-          formState.inputValues.street,
-          formState.inputValues.apartment,
-          formState.inputValues.city,
-          formState.inputValues.state,
-          formState.inputValues.zipcode,
-        ),
-      );
       if (isAuthFlow) {
+        await dispatch(
+          usersetActions.setUserAddress(
+            formState.inputValues.street,
+            formState.inputValues.apartment,
+            formState.inputValues.city,
+            formState.inputValues.state,
+            formState.inputValues.zipcode,
+          ),
+        );
         props.navigation.navigate('Search');
       } else {
+        await dispatch(
+          usersetActions.updateAddress(
+            address.id,
+            formState.inputValues.street,
+            formState.inputValues.apartment,
+            formState.inputValues.city,
+            formState.inputValues.state,
+            formState.inputValues.zipcode,
+          ),
+        );
         props.navigation.goBack();
       }
     } catch (err) {
