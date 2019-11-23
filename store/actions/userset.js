@@ -3,13 +3,14 @@ import Address from '../../models/address';
 
 export const SET_USER = 'SET_USER';
 export const SET_ADDRESS = 'SET_ADDRESS';
+export const UPDATE_ADDRESS = 'UPDATE_ADDRESS';
 
 export const setuser = (name, email) => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     const userId = getState().auth.userId;
     const response = await fetch(
-      `https://equipmentrental-97ece.firebaseio.com/users/${userId}.json/?auth=${token}`,
+      `https://equipmentrental-97ece.firebaseio.com/users/${userId}/user.json/?auth=${token}`,
       {
         method: 'POST',
         headers: {
@@ -41,7 +42,7 @@ export const getUser = () => {
     const userId = getState().auth.userId;
     try {
       const response = await fetch(
-        `https://equipmentrental-97ece.firebaseio.com/users/${userId}.json/`,
+        `https://equipmentrental-97ece.firebaseio.com/users/${userId}/user.json/`,
       );
 
       if (!response.ok) {
@@ -73,7 +74,7 @@ export const setUserAddress = (street, apartment, city, state, zipcode) => {
     const userId = getState().auth.userId;
 
     const response = await fetch(
-      `https://equipmentrental-97ece.firebaseio.com/users/${userId}.json/?auth=${token}`,
+      `https://equipmentrental-97ece.firebaseio.com/users/${userId}/address.json/?auth=${token}`,
       {
         method: 'POST',
         headers: {
@@ -93,20 +94,17 @@ export const setUserAddress = (street, apartment, city, state, zipcode) => {
       throw new Error('Something went wront in seting user address!');
     }
 
-    const address = new Address(street, apartment, city, state, zipcode);
-    dispatch({
-      type: SET_ADDRESS,
-      address: address,
-    });
+    dispatch(getUserAddress());
   };
 };
 
 export const getUserAddress = () => {
   return async (dispatch, getState) => {
     const userId = getState().auth.userId;
+
     try {
       const response = await fetch(
-        `https://equipmentrental-97ece.firebaseio.com/users/${userId}.json/`,
+        `https://equipmentrental-97ece.firebaseio.com/users/${userId}/address.json/`,
       );
 
       if (!response.ok) {
@@ -114,20 +112,21 @@ export const getUserAddress = () => {
       }
 
       const resData = await response.json();
-      let address;
 
+      if (!resData) {
+        return 'AddressNotSaved';
+      }
+
+      let address;
       for (const key in resData) {
         address = new Address(
+          key,
           resData[key].street,
           resData[key].apartment,
           resData[key].city,
           resData[key].state,
           resData[key].zipcode,
         );
-      }
-
-      if (!address.street) {
-        return 'AddressNotSaved';
       }
 
       dispatch({
@@ -137,5 +136,33 @@ export const getUserAddress = () => {
     } catch (err) {
       throw err;
     }
+  };
+};
+
+export const updateAddress = (key, street, apartment, city, state, zipcode) => {
+  return async (dispatch, getState) => {
+    const token = getState().auth.token;
+    const userId = getState().auth.userId;
+    const response = await fetch(
+      `https://equipmentrental-97ece.firebaseio.com/users/${userId}/address/${key}.json/?auth=${token}`,
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          street,
+          apartment,
+          city,
+          state,
+          zipcode,
+        }),
+      },
+    );
+    if (!response.ok) {
+      throw new Error('Something went wrong while updating address!');
+    }
+
+    dispatch(getUserAddress());
   };
 };

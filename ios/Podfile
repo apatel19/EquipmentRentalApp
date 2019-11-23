@@ -37,6 +37,8 @@ target 'EquipmentRental' do
 
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+
   post_install do |installer|
     installer.pods_project.targets.each do |target|
 
