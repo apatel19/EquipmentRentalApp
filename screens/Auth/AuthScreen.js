@@ -9,7 +9,7 @@ import {
   Alert,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 import Input from '../../components/UI/Input';
 import Card from '../../components/UI/Card';
@@ -92,7 +92,6 @@ const AuthScreen = props => {
           authActions.signup(
             formState.inputValues.email,
             formState.inputValues.password,
-            formState.inputValues.name,
           ),
         );
         //Here save use name and data to Database after creation

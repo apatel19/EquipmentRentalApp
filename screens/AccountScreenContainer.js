@@ -1,12 +1,22 @@
 import React from 'react';
-import {ScrollView, FlatList, Platform} from 'react-native';
+import {
+  ScrollView,
+  FlatList,
+  Platform,
+  Button,
+  View,
+  StyleSheet,
+} from 'react-native';
 import AccountOptions from '../constants/Account';
 import AccountList from '../components/UI/AccountList';
 
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+
+import * as authActions from '../store/actions/Auth';
 
 const AccountScreenContainer = props => {
   const user = useSelector(state => state.user.user);
+  const dispatch = useDispatch();
 
   return (
     <ScrollView>
@@ -32,6 +42,16 @@ const AccountScreenContainer = props => {
           />
         )}
       />
+      <View style={styles.logoutButtonContainer}>
+        <Button
+          color="red"
+          style={styles.logoutButton}
+          title="Logout"
+          onPress={() => {
+            dispatch(authActions.logout());
+          }}
+        />
+      </View>
     </ScrollView>
   );
 };
@@ -41,5 +61,20 @@ AccountScreenContainer.navigationOptions = navData => {
     headerTitle: 'My Account',
   };
 };
+
+const styles = StyleSheet.create({
+  logoutButtonContainer: {
+    width: '70%',
+    height: 40,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 20,
+  },
+  logoutButton: {
+    width: '100%',
+    height: '100%',
+  },
+});
 
 export default AccountScreenContainer;
