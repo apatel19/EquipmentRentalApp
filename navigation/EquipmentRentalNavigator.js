@@ -29,6 +29,7 @@ import PaymentContainer from '../screens/Account/Payments/PaymentContainer';
 import AddItem from '../screens/Account/MyItems/AddItem';
 
 import AuthScreen from '../screens/Auth/AuthScreen';
+import StartupScreen from '../screens/StartupScreen';
 
 const defaultStackOption = {
   headerStyle: {
@@ -133,12 +134,13 @@ const AuthAddressNavigator = createStackNavigator({
 
 const mainNavigator = createSwitchNavigator(
   {
+    Startup: StartupScreen,
     Auth: AuthNavigator,
     AuthAddressNavigator: AuthAddressNavigator,
     Main: EquipmentRentalNavigator,
   },
   {
-    initialRouteName: 'Auth',
+    // initialRouteName: 'Auth',
   },
 );
 
