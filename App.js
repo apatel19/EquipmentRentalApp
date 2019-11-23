@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import ReduxThunk from 'redux-thunk';
 
-import EquipmentRentalNavigator from './navigation/EquipmentRentalNavigator';
+import NavigationContainer from './navigation/NavigationContainer';
 
 import productReducer from './store/reducers/products';
 import cartReducer from './store/reducers/cart';
@@ -30,7 +30,7 @@ const App = () => {
   console.disableYellowBox = true;
   return (
     <Provider store={store}>
-      <EquipmentRentalNavigator />
+      <NavigationContainer />
     </Provider>
   );
 };
