@@ -3,7 +3,6 @@ import Address from '../../models/address';
 
 export const SET_USER = 'SET_USER';
 export const SET_ADDRESS = 'SET_ADDRESS';
-export const UPDATE_ADDRESS = 'UPDATE_ADDRESS';
 
 export const setuser = (name, email) => {
   return async (dispatch, getState) => {
