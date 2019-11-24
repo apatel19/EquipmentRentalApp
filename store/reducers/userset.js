@@ -1,8 +1,10 @@
 import {SET_USER, SET_ADDRESS} from '../actions/userset';
+import {SET_PAYMENT_CARD} from '../actions/paymentCard';
 
 const initialState = {
   user: '',
   address: '',
+  paymentCard: '',
 };
 
 export default (state = initialState, action) => {
@@ -16,6 +18,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         address: action.address,
+      };
+    case SET_PAYMENT_CARD:
+      return {
+        ...state,
+        paymentCard: action.paymentCard,
       };
     default:
       return state;
