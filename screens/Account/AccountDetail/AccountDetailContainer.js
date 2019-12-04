@@ -18,16 +18,28 @@ const AccountDetailContainer = props => {
       <ScrollView>
         <View style={styles.formContainer}>
           <View style={styles.inputContainer}>
-            <Text style={styles.formLabel}>Name</Text>
-            <TextInput style={styles.input} title="Change Name" />
+            <Text style={styles.formLabel}>Change Name</Text>
+            <TextInput
+              style={styles.input}
+              title="Change Name"
+              placeholder="(optional) new name"
+            />
           </View>
           <View style={styles.inputContainer}>
-            <Text style={styles.formLabel}>Email</Text>
-            <TextInput style={styles.input} title="Change Email" />
+            <Text style={styles.formLabel}>Change Email</Text>
+            <TextInput
+              style={styles.input}
+              title="Change Email"
+              placeholder="(optional) new email"
+            />
           </View>
           <View style={styles.inputContainer}>
-            <Text style={styles.formLabel}>Password</Text>
-            <TextInput style={styles.input} title="Change Password" />
+            <Text style={styles.formLabel}>Change Password</Text>
+            <TextInput
+              style={styles.input}
+              title="Change Password"
+              placeholder="(optional) new password"
+            />
           </View>
 
           <View style={styles.buttonContainer}>

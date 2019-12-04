@@ -164,6 +164,7 @@ const AddressContainer = props => {
             label="Apartments"
             errorText="Please enter a valid apartment."
             keyboardType="default"
+            placeholder="optional"
             autoCapitalize="none"
             returnKeyType="next"
             onInputChange={inputChangeHandler}

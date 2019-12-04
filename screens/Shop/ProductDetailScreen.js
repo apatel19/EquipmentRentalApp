@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, Text, Image, StyleSheet, Button} from 'react-native';
+import {ScrollView, Text, Image, StyleSheet, Button, Alert} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import * as cartActions from '../../store/actions/cart';
 
@@ -18,6 +18,7 @@ const ProductDetailScreen = props => {
         title="Add to cart"
         onPress={() => {
           dispatch(cartActions.addToCart(selectedProduct));
+          Alert.alert('Added to cart');
         }}
       />
       <Text style={styles.price}>${selectedProduct.price.toFixed(2)}</Text>
