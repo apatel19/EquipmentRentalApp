@@ -59,13 +59,11 @@ const AddItem = props => {
   const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
       title: editedProduct ? editedProduct.title : '',
-      //imageUrl: editedProduct ? editedProduct.imageUrl : '',
       price: '',
       time: editedProduct ? editedProduct.time : '',
     },
     inputValidities: {
       title: editedProduct ? true : false,
-      //imageUrl: editedProduct ? true : false,
       price: editedProduct ? true : false,
       time: editedProduct ? true : false,
     },
@@ -100,6 +98,15 @@ const AddItem = props => {
       return;
     }
 
+    if (!image1) {
+      Alert.alert('Image not found!', 'Please check the error in the form.', [
+        {
+          text: 'Ok',
+        },
+      ]);
+      return;
+    }
+
     setError(null);
     setIsLoading(true);
     try {
@@ -109,7 +116,6 @@ const AddItem = props => {
             prodId,
             formState.inputValues.title,
             image1,
-            //formState.inputValues.imageUrl,
             formState.inputValues.time,
           ),
         );
@@ -197,7 +203,7 @@ const AddItem = props => {
             required
           />
           <View style={styles.addImageContainer}>
-            <Button title="Image 1" onPress={pickImageHandler} />
+            <Button title="Image" onPress={pickImageHandler} />
             {image1 || editedProduct ? (
               <View style={styles.imageContainer}>
                 <Image
@@ -246,24 +252,17 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     width: '100%',
-    height: '60%',
-    alignContent: 'flex-end',
+    height: '80%',
   },
   addImageContainer: {
-    flexDirection: 'row',
-    paddingRight: 20,
-    justifyContent: 'space-between',
-    alignContent: 'center',
+    paddingHorizontal: 10,
     marginVertical: 10,
   },
   image: {
     paddingVertical: 10,
-    paddingHorizontal: 10,
     width: '80%',
     height: '80%',
     resizeMode: 'contain',
-    borderColor: 'black',
-    borderWidth: 1,
   },
   centered: {
     flex: 1,

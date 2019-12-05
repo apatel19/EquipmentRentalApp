@@ -134,7 +134,7 @@ const AuthScreen = props => {
       style={styles.screen}
       behavior="padding"
       keyboardVerticalOffset={50}>
-      <LinearGradient colors={['#ffedff', '#ffe3ff']} style={styles.gradient}>
+      <LinearGradient colors={['#233329', '#63D471']} style={styles.gradient}>
         <Card style={styles.authContainer}>
           <ScrollView>
             <Input
@@ -201,7 +201,7 @@ const AuthScreen = props => {
 };
 
 AuthScreen.navigationOptions = {
-  headerTitle: 'Authenticate',
+  headerTitle: 'Equipment Rental',
 };
 
 const styles = StyleSheet.create({

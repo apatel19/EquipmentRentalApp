@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Card snapshot match test 1`] = `
+exports[`Custom input component Card snapshot match test 1`] = `
 <View
   style={
     Object {
@@ -27,10 +27,12 @@ exports[`Card snapshot match test 1`] = `
         "borderBottomWidth": 1,
         "borderColor": "black",
         "borderWidth": 1,
+        "color": "black",
         "paddingHorizontal": 2,
         "paddingVertical": 5,
       }
     }
+    testID="textInput"
     underlineColorAndroid="transparent"
     value=""
   />

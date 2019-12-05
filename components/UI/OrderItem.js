@@ -12,6 +12,7 @@ const OrderItem = props => {
         <Text style={styles.date}>{props.date}</Text>
       </View>
       <Button
+        testID={'showDetailButtonTest'}
         color={Colors.primaryColor}
         title={showDetails ? 'Hide Details' : 'Show Details'}
         onPress={() => {
@@ -19,7 +20,7 @@ const OrderItem = props => {
         }}
       />
       {showDetails && (
-        <View style={styles.detailItems}>
+        <View testID={'orderDetailView'} style={styles.detailItems}>
           {props.items.map(cartItem => (
             <CartItem
               key={cartItem.productId}
