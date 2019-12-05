@@ -98,15 +98,6 @@ const AddItem = props => {
       return;
     }
 
-    if (!image1) {
-      Alert.alert('Image not found!', 'Please check the error in the form.', [
-        {
-          text: 'Ok',
-        },
-      ]);
-      return;
-    }
-
     setError(null);
     setIsLoading(true);
     try {
