@@ -198,12 +198,12 @@ const AddItem = props => {
           />
           <View style={styles.addImageContainer}>
             <Button title="Image 1" onPress={pickImageHandler} />
-            {image1 ? (
+            {image1 || editedProduct ? (
               <View style={styles.imageContainer}>
                 <Image
                   style={styles.image}
                   source={{
-                    uri: image1,
+                    uri: image1 ? image1 : editedProduct.imageUrl,
                   }}
                 />
               </View>
