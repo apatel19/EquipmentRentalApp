@@ -39,6 +39,8 @@ target 'EquipmentRental' do
 
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
 
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+
   post_install do |installer|
     installer.pods_project.targets.each do |target|
 
