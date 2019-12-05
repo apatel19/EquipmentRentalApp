@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* EquipmentRentalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* EquipmentRentalTests.m */; };
 		030F439CC8254DBA8D922DA1 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4BA9274B97942118E4B42D5 /* EvilIcons.ttf */; };
@@ -14,6 +15,7 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		14DDCFED2397680E00CD7D45 /* libreact-native-image-picker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14DDCFEC2397680E00CD7D45 /* libreact-native-image-picker.a */; };
 		14E3B2F523787FE300D1C7C7 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14E3B2E523787FE200D1C7C7 /* FontAwesome5_Solid.ttf */; };
 		14E3B2F623787FE300D1C7C7 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14E3B2E623787FE200D1C7C7 /* Fontisto.ttf */; };
 		14E3B2F723787FE300D1C7C7 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14E3B2E723787FE200D1C7C7 /* Ionicons.ttf */; };
@@ -61,6 +63,13 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = EquipmentRental;
 		};
+		14DDCFE92397677600CD7D45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14DDCFE52397677600CD7D45 /* RNImagePicker.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
+			remoteInfo = RNImagePicker;
+		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
@@ -82,6 +91,8 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = EquipmentRental/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = EquipmentRental/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = EquipmentRental/main.m; sourceTree = "<group>"; };
+		14DDCFE52397677600CD7D45 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
+		14DDCFEC2397680E00CD7D45 /* libreact-native-image-picker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-image-picker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14E3B2E523787FE200D1C7C7 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Solid.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		14E3B2E623787FE200D1C7C7 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Fontisto.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		14E3B2E723787FE200D1C7C7 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
@@ -145,6 +156,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14DDCFED2397680E00CD7D45 /* libreact-native-image-picker.a in Frameworks */,
 				D9FBFACE079FDA48AA9F90FC /* libPods-EquipmentRental.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,6 +211,14 @@
 			name = EquipmentRental;
 			sourceTree = "<group>";
 		};
+		14DDCFE62397677600CD7D45 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				14DDCFEA2397677600CD7D45 /* libRNImagePicker.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		14E3B2E423787F9300D1C7C7 /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +245,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				14DDCFEC2397680E00CD7D45 /* libreact-native-image-picker.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				AC94A0C2B4DCB4BC95657068 /* libPods-EquipmentRental.a */,
@@ -276,6 +297,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				14DDCFE52397677600CD7D45 /* RNImagePicker.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -429,6 +451,12 @@
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 14DDCFE62397677600CD7D45 /* Products */;
+					ProjectRef = 14DDCFE52397677600CD7D45 /* RNImagePicker.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* EquipmentRental */,
@@ -438,6 +466,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		14DDCFEA2397677600CD7D45 /* libRNImagePicker.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNImagePicker.a;
+			remoteRef = 14DDCFE92397677600CD7D45 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		00E356EC1AD99517003FC87E /* Resources */ = {
