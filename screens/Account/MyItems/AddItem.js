@@ -100,8 +100,6 @@ const AddItem = props => {
       return;
     }
 
-    console.log(image1);
-
     setError(null);
     setIsLoading(true);
     try {
