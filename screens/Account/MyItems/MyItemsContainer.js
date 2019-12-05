@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
 
 MyItemsContainer.navigationOptions = navData => {
   return {
-    headerTitle: 'MyItems',
+    headerTitle: 'My Items',
     headerRight: (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item

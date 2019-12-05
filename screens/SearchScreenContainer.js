@@ -3,6 +3,7 @@ import {
   FlatList,
   View,
   Button,
+  Alert,
   Platform,
   ActivityIndicator,
   StyleSheet,
@@ -112,6 +113,7 @@ const SearchScreenContainer = props => {
             title="Add to Cart"
             onPress={() => {
               dispatch(cartActions.addToCart(itemData.item));
+              Alert.alert('Added to cart');
             }}
           />
         </ProductItem>
