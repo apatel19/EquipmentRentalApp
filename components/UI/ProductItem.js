@@ -18,9 +18,12 @@ const ProductItem = props => {
   }
 
   return (
-    <Card style={styles.product}>
-      <View style={styles.touchable}>
-        <TouchableCmp onPress={props.onSelect} useForeground>
+    <Card testID={'card'} style={styles.product}>
+      <View testID={'touchableContainer'} style={styles.touchable}>
+        <TouchableCmp
+          testID={'touchableComp'}
+          onPress={props.onSelect}
+          useForeground>
           <View>
             <View style={styles.imageContainer}>
               <Image style={styles.image} source={{uri: props.image}} />

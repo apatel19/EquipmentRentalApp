@@ -16,5 +16,6 @@ exports[`Card snapshot match test 1`] = `
       "shadowRadius": 8,
     }
   }
+  testID="view"
 />
 `;

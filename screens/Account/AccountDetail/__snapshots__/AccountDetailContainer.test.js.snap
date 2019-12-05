@@ -34,10 +34,11 @@ exports[`Card snapshot match test 1`] = `
               }
             }
           >
-            Name
+            Change Name
           </Text>
           <TextInput
             allowFontScaling={true}
+            placeholder="(optional) new name"
             rejectResponderTermination={true}
             style={
               Object {
@@ -64,10 +65,11 @@ exports[`Card snapshot match test 1`] = `
               }
             }
           >
-            Email
+            Change Email
           </Text>
           <TextInput
             allowFontScaling={true}
+            placeholder="(optional) new email"
             rejectResponderTermination={true}
             style={
               Object {
@@ -94,10 +96,11 @@ exports[`Card snapshot match test 1`] = `
               }
             }
           >
-            Password
+            Change Password
           </Text>
           <TextInput
             allowFontScaling={true}
+            placeholder="(optional) new password"
             rejectResponderTermination={true}
             style={
               Object {

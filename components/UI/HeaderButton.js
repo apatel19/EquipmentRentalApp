@@ -1,5 +1,5 @@
 import React from 'react';
-import {HeaderButton} from 'react-navigation-header-buttons';
+import {HeaderButton} from 'react-navigation-header-buttons/index';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const CustomHeaderButton = props => {
